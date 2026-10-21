@@ -1,2 +1,2 @@
 # devel
-Main source code repository
+Dự án thực hành Git với CI/CD Jenkins.

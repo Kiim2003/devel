@@ -10,5 +10,8 @@ pipeline {
         stage('Test') {
             steps { sh 'pytest' }
         }
+        stage('Lint') {
+            steps { sh 'pip install flake8 && flake8 app.py' }
+        }
     }
 }

@@ -7,7 +7,7 @@ pipeline {
         stage('Install') {
             steps { sh 'pip install -r requirements.txt' }
         }
-        stage('Test') {
+        stage('Uni Test') {
             steps { sh 'pytest' }
         }
         stage('Lint') {

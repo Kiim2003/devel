@@ -5,17 +5,29 @@ pipeline {
             steps { checkout scm }
         }
         stage('Install') {
-            steps { sh 'pip install -r requirements.txt' }
-        }
-<<<<<<< HEAD
-        stage('Run Test') {
-=======
-        stage('Uni Test') {
->>>>>>> feature/rename-test-stage
-            steps { sh 'pytest' }
+            steps {
+                sh '''
+                    python3 -m venv .venv
+                    . .venv/bin/activate
+                    pip install -r requirements.txt
+                '''
+            }
         }
         stage('Lint') {
-            steps { sh 'pip install flake8 && flake8 app.py' }
+            steps {
+                sh '''
+                    . .venv/bin/activate
+                    flake8 app.py
+                '''
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                sh '''
+                    . .venv/bin/activate
+                    pytest
+                '''
+            }
         }
     }
 }
